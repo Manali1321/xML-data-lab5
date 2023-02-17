@@ -1,5 +1,6 @@
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const libraryNS = "http://www.opengis.net/kml/2.2";
 var xml;
 async function loadLibrary() {
   if (xml == undefined) {
@@ -21,9 +22,19 @@ async function loadLibrary() {
 }
 async function loadName() {
   xml = await loadLibrary();
-  return xml.querySelectorAll("Placemark");
+  var placemarks = xml.querySelectorAll("Placemark");
+  return placemarks
 }
+// async function getLibraryID(id) {
+//   xml = await loadLibrary();
+//   let result = xml.evaluate(
+//     `//Placemark/text()='${id}'`, kml, libraryNS, 2, null);
+//   return result.interateNext();
+// }
+
+
 module.exports = {
   loadLibrary,
-  loadName
+  loadName,
+  // getLibraryID
 };

@@ -1,15 +1,16 @@
 extends layout
 block main-content
-  h1 Libraries 
   .div 
     each l in library
       -let name=l.querySelector("name").textContent;
       -let description=l.querySelector("description").textContent;
       -let address=l.querySelector("address").textContent;
       -let phoneNumber=l.querySelector("phoneNumber").textContent;
-      //- -let PlacemarkId=l.querySelector(":id").textContent;
+      -let libraryID=l.id
       h2
-        a(href=`/${l["@id"]}`) #{name}
-      p #{address}
-      p #{phoneNumber}
-      p #{description}
+        a(href=`/${libraryID}`) #{name}
+        //- -console.log(`${libraryID}`)
+        //- -console.log(l.getAttribute("#libraryID"))
+      p Address: #{address}
+      p Phone Number: #{phoneNumber}
+      p Description: #{description}
